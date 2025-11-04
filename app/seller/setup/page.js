@@ -87,7 +87,7 @@ export default function SellerSetupPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Complete Your Seller Profile</h1>
           <p className="text-gray-600">
-            Let's set up your business information to start selling on our platform
+            Let&apos;s set up your business information to start selling on our platform
           </p>
         </div>
 

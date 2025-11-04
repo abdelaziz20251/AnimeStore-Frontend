@@ -249,7 +249,7 @@ export default function CartPage() {
                   />
                 </svg>
                 <span className="font-semibold">
-                  You're saving ${cartTotals ? (cartTotals.subtotal * 0.25).toFixed(2) : (totalPrice * 0.25).toFixed(2)}
+                  You&apos;re saving ${cartTotals ? (cartTotals.subtotal * 0.25).toFixed(2) : (totalPrice * 0.25).toFixed(2)}
                 </span>
               </div>
               <p className="text-sm text-green-600 mt-1">25% off list prices + FREE shipping</p>

@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-white min-h-screen">
-        <ClientLayout children={children} />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

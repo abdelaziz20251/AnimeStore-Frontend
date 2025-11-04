@@ -71,7 +71,7 @@ export default function CompleteProfilePage() {
             Complete Your Profile
           </h1>
           <p className="text-gray-600">
-            Welcome! Let's set up your profile to get started.
+            Welcome! Let&apos;s set up your profile to get started.
           </p>
         </div>
 
