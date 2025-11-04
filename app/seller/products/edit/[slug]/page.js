@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import ReactDOM from 'react-dom';
 import useAuthStore from '@/store/useAuthStore';
@@ -19,8 +18,7 @@ if (typeof window !== 'undefined' && !ReactDOM.findDOMNode) {
   };
 }
 
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import 'react-quill/dist/quill.snow.css';
+// Removed react-quill - using textarea instead for React 19 compatibility
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -56,16 +54,7 @@ export default function EditProductPage() {
   const [specKey, setSpecKey] = useState('');
   const [specValue, setSpecValue] = useState('');
 
-  const quillModules = {
-    toolbar: [
-      [{ header: [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ color: [] }, { background: [] }],
-      ['link'],
-      ['clean']
-    ]
-  };
+  // Removed quill modules - using textarea instead
 
   useEffect(() => {
     if (isHydrated && (!user || user.role !== 'seller')) {
@@ -523,14 +512,16 @@ export default function EditProductPage() {
             <h2 className="text-xl font-semibold text-gray-900 mb-6">
               About This Item <span className="text-red-500">*</span>
             </h2>
-            <ReactQuill
-              theme="snow"
+            <textarea
               value={formData.description}
-              onChange={(value) => setFormData({ ...formData, description: value })}
-              modules={quillModules}
-              className="bg-white"
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Write a detailed description of your product..."
+              rows={12}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y min-h-[200px] bg-white text-gray-900 placeholder-gray-400"
             />
+            <p className="mt-2 text-sm text-gray-500">
+              Tip: Use line breaks to format your description. You can use markdown-style formatting.
+            </p>
           </div>
 
           {/* Technical Specifications */}
