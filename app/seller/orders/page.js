@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import useAuthStore from '@/store/useAuthStore';
 import { sellersAPI } from '@/services/api';
 
-export default function SellerOrdersPage() {
+function SellerOrdersContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { user, isHydrated } = useAuthStore();
@@ -192,6 +192,18 @@ function StatusBadge({ status }) {
     >
       {status.charAt(0).toUpperCase() + status.slice(1)}
     </span>
+  );
+}
+
+export default function SellerOrdersPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary-600"></div>
+      </div>
+    }>
+      <SellerOrdersContent />
+    </Suspense>
   );
 }
 
